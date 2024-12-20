@@ -15,6 +15,7 @@ export default function App() {
   const [userNumber, setUserNumber] = useState();
   const [gameIsOver, setGameIsOver] = useState(true);
   const [appIsReady, setAppIsReady] = useState(false);
+  const [guessRounds, setGuessRounds] = useState(0);
 
   useEffect(() => {
     async function prepare() {
@@ -66,6 +67,11 @@ export default function App() {
     setGameIsOver(true);
   }
 
+  function startNewGameHandler() {
+    setUserNumber(null);
+    setGuessRounds(0);
+  }
+
   let screen = (
     <StartScreen
       onPickNumber={pickedNumberHandler}
@@ -80,7 +86,14 @@ export default function App() {
   }
 
   if (gameIsOver && userNumber) {
-    screen = <GameOverScreen onLayout={onLayoutRootView} />;
+    screen = (
+      <GameOverScreen
+        onLayout={onLayoutRootView}
+        userNumber={userNumber}
+        roundsNumber={guessRounds}
+        onStartNewGame={startNewGameHandler}
+      />
+    );
   }
 
   return (
