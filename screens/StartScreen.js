@@ -3,6 +3,8 @@ import { TextInput, View, StyleSheet, Alert, Text } from "react-native";
 
 import PrimaryButton from "../components/ui/PrimaryButton";
 import Title from "../components/ui/Title";
+import Card from "../components/ui/Card";
+import InstructionText from "../components/ui/InstructionText";
 import Colors from "../constants/colors";
 
 function StartScreen({ onPickNumber }) {
@@ -35,16 +37,16 @@ function StartScreen({ onPickNumber }) {
   return (
     <View style={styles.rootContainer}>
       <Title>Guess my number</Title>
-      <View style={styles.inputContainer}>
-        <Text style={styles.instructionText}>Enter a number</Text>
+      <Card>
+        <InstructionText>Enter a Number</InstructionText>
         <TextInput
           style={styles.input}
           maxLength={2}
           keyboardType="number-pad"
           autoCapitalize="none"
           autoCorrect={false}
-          value={enteredNumber}
           onChangeText={inputHandler}
+          value={enteredNumber}
         />
         <View style={styles.btnsContainer}>
           <View style={styles.btnContainer}>
@@ -54,7 +56,7 @@ function StartScreen({ onPickNumber }) {
             <PrimaryButton onPress={confirmHandler}>Confirm</PrimaryButton>
           </View>
         </View>
-      </View>
+      </Card>
     </View>
   );
 }
